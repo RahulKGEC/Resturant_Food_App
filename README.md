@@ -16,6 +16,18 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
     npx expo start
    ```
 
+🍔 Restaurant Food App – React Native
+This is a mobile app where users can:
+
+📋 Browse a list of restaurants and food items
+
+🔍 Search for food or restaurant names
+
+🛒 Add food to a cart and place orders
+
+❤️ Save favorite dishes
+
+📱 Responsive UI for all mobile screens
 In the output, you'll find options to open the app in a
 
 - [development build](https://docs.expo.dev/develop/development-builds/introduction/)
