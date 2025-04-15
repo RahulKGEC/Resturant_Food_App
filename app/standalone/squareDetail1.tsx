@@ -3,11 +3,14 @@ import React, { useState } from 'react'
 import { AntDesign, Entypo, Feather, FontAwesome, FontAwesome5, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { useNavigation, useRouter } from 'expo-router'
 import { DrawerActions } from '@react-navigation/native'
-// import { TextInput } from 'react-native-gesture-handler'
 import { TextInput } from 'react-native'
-import Cart from "../../../components/myComponents/Cart"
+import Cart from "../../components/myComponents/Cart"
+import { LinearGradient } from 'expo-linear-gradient';
+import { IconSymbol } from '@/components/ui/IconSymbol'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 const home = () => {
   const route = useRouter()
+  const [model,setModel]=useState(true)
   const [bg, setBg] = useState("white");
 
   const navigation = useNavigation();
@@ -19,7 +22,7 @@ const home = () => {
 
     <SafeAreaView>
       <ScrollView>
-        <View>
+        <View style={{ position: "relative", display: "flex" }}>
 
 
           <View style={{ marginHorizontal: 15 }}>
@@ -131,7 +134,7 @@ const home = () => {
                   All Categories
                 </Text>
               </View>
-              <TouchableOpacity onPress={() => { route.push('/standalone/squareDetail1') }}
+              <TouchableOpacity
                 onPressOut={() => setBg("white")}   // darker on press
                 onPressIn={() => setBg('#FF7622')}
                 style={{
@@ -164,45 +167,95 @@ const home = () => {
 
           {/* 5th Section  */}
           <ScrollView horizontal={true} style={{ marginLeft: 15 }}>
-            <TouchableOpacity onPress={() => route.push("/standalone/Search")}>
+            <View style={{ height: 150, width: 120, borderRadius: 18, }}>
+              <View style={{ alignItems: "center" }}>
 
-              <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, marginRight: 15, paddingHorizontal: 10, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
-                <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
+                <Image source={{ uri: "https://tse4.mm.bing.net/th?id=OIP.KXbIh9HDVtXtVg-IiV6m6QAAAA&pid=Api&P=0&h=180" }} style={{ width: 110, height: 100, borderRadius: 15 }} />
+              </View>
+              <View style={{ marginHorizontal: 10 }}>
 
-                  <FontAwesome5 name="fire-alt" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
-                </View>
-                <Text style={{ fontWeight: "700" }}>
-                  All
+
+                <Text style={{ fontSize: 18, fontWeight: "700" }}>
+                  Pizza
                 </Text>
+                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                  <Text style={{ fontSize: 14, fontWeight: "400", color: "#333333" }}>
+                    Starting
+                  </Text>
+                  <Text style={{ fontSize: 14, fontWeight: "400", color: "#333333" }}>
+                    $70
+                  </Text>
+                </View>
               </View>
-            </TouchableOpacity>
+            </View>
 
+            <View style={{ height: 150, width: 120, borderRadius: 18, marginLeft: 15 }}>
+              <View style={{ alignItems: "center" }}>
 
-
-            <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
-              <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
-
-                <FontAwesome5 name="hamburger" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
+                <Image source={require("../../assets/images/detail2.png")} style={{ width: 110, height: 100, borderRadius: 15 }} />
               </View>
-              <Text style={{ fontWeight: "700" }}>
-                Hot Dog
-              </Text>
+              <View style={{ marginHorizontal: 10 }}>
+
+
+                <Text style={{ fontSize: 18, fontWeight: "700" }}>
+                  Pizza
+                </Text>
+                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                  <Text style={{ fontSize: 14, fontWeight: "400", color: "#333333" }}>
+                    Starting
+                  </Text>
+                  <Text style={{ fontSize: 14, fontWeight: "400", color: "#333333" }}>
+                    $70
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            <View style={{ height: 150, width: 120, borderRadius: 18, marginLeft: 15 }}>
+              <View style={{ alignItems: "center" }}>
+
+                <Image source={{ uri: "https://tse3.mm.bing.net/th?id=OIP.wnwcBAQL0XEzt6SxuhUkjgHaGO&pid=Api&P=0&h=180" }} style={{ width: 110, height: 100, borderRadius: 15 }} />
+              </View>
+              <View style={{ marginHorizontal: 10 }}>
+
+
+                <Text style={{ fontSize: 18, fontWeight: "700" }}>
+                  Pizza
+                </Text>
+                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                  <Text style={{ fontSize: 14, fontWeight: "400", color: "#333333" }}>
+                    Starting
+                  </Text>
+                  <Text style={{ fontSize: 14, fontWeight: "400", color: "#333333" }}>
+                    $70
+                  </Text>
+                </View>
+              </View>
             </View>
 
 
 
-            <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
-              <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
+            <View style={{ height: 150, width: 120, borderRadius: 18, marginLeft: 15 }}>
+              <View style={{ alignItems: "center" }}>
 
-
-                <FontAwesome5 name="wine-bottle" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
+                <Image source={require("../../assets/images/detail2.png")} style={{ width: 110, height: 100, borderRadius: 15 }} />
               </View>
-              <Text style={{ fontWeight: "700" }}>
-                Hot Dog
-              </Text>
+              <View style={{ marginHorizontal: 10 }}>
+
+
+                <Text style={{ fontSize: 18, fontWeight: "700" }}>
+                  Pizza
+                </Text>
+                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                  <Text style={{ fontSize: 14, fontWeight: "400", color: "#333333" }}>
+                    Starting
+                  </Text>
+                  <Text style={{ fontSize: 14, fontWeight: "400", color: "#333333" }}>
+                    $70
+                  </Text>
+                </View>
+              </View>
             </View>
-
-
 
           </ScrollView>
 
@@ -244,15 +297,81 @@ const home = () => {
 
 
 
+            {/* 8th Section */}
+
+{model &&
+
+            <View style={{ height: 350, width: "90%", borderRadius: 18, position: "absolute", top: -250, left: 10, }}>
+
+              <LinearGradient
+                colors={['#F6BD21', '#E66E00']} // top to bottom gradient
+                style={{ flex: 1, borderRadius: 30 }}
+              >
+                <Text style={{
+                  fontWeight: "900",
+                  fontSize: 33,
+                  color: "white",
+                  textAlign: "center",
+                  marginTop: 60
+                }}>
+                  Hurry Offers!
+                </Text>
+
+
+                <Text style={{
+                  fontWeight: "900",
+                  fontSize: 24,
+                  color: "white",
+                  textAlign: "center",
+                  marginTop: 40
+                }}>
+                  #1243CD2
+                </Text>
+                <Text style={{
+                  fontWeight: "900",
+                  fontSize: 15,
+                  color: "white",
+                  textAlign: "center",
+                  marginTop: 40
+                }}>
+                  Use the coupon get 25% discount
+                </Text>
+
+                <View style={{ justifyContent: "center", alignItems: "center", }}>
+
+                  <View style={{ borderColor: "white", borderWidth: 2, height: 48, width: "80%", marginTop: 29, borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
+                    <Text style={{ color: "white", fontSize: 17 }}>
+                      GOT IT
+                    </Text>
+                  </View>
+                </View>
+
+              </LinearGradient>
+              <View
+                style={{
+                  height: 35,
+                  width: 35,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "50%",
+                  backgroundColor: "#F6BD21",
+                  // flexDirection:"row"
+                  position: "absolute",
+                  right:-10,
+                top:-10
+                }}
+              >
+
+
+<Icon name="close" size={30} color="#E66E00" onPress={()=>setModel(!model)} />
+
+              </View>
+
+            </View>
 
 
 
-
-
-
-
-
-
+              }
 
 
 

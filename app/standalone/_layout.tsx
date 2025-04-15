@@ -12,6 +12,9 @@ const _layout = () => {
       <Stack.Screen name="login"  options={{ title: "Login", headerShown: false }} />
       <Stack.Screen name="EditScreen" options={{ title: "EditScreen", headerShown: false }} />
       <Stack.Screen name="MyAddress" options={{ title: "MyAddress", headerShown: false }} />
+      <Stack.Screen name="Map" options={{ title: "Map", headerShown: false }} />
+      <Stack.Screen name="squareDetail" options={{ title: "squareDetail", headerShown: false }} />
+      <Stack.Screen name="Search" options={{ title: "Search", headerShown: false }} />
     </Stack>
   );
 };
