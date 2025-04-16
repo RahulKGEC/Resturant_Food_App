@@ -22,7 +22,7 @@ const home = () => {
         <View>
 
 
-          <View style={{ marginHorizontal: 15 }}>
+          <View style={{ marginHorizontal: 18 }}>
 
             <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 25, alignItems: "center", }}>
 
@@ -191,7 +191,21 @@ const home = () => {
             </TouchableOpacity>
 
 
-            <TouchableOpacity onPress={() => route.push("/standalone/Details")}>
+
+            <TouchableOpacity onPress={() => route.push("/standalone/ResturantView")}>
+              <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
+                <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
+
+                  <FontAwesome5 name="hamburger" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
+                </View>
+                <Text style={{ fontWeight: "700" }}>
+                  Resturant View 
+                </Text>
+              </View>
+            </TouchableOpacity>
+
+
+            <TouchableOpacity onPress={() => route.push("/standalone/SpicyResturant")}>
               <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
                 <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
 
@@ -199,7 +213,19 @@ const home = () => {
                   <FontAwesome5 name="wine-bottle" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
                 </View>
                 <Text style={{ fontWeight: "700" }}>
-                  Bear
+                  Spicy Resturant
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => route.push("/standalone/CartBlack")}>
+              <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
+                <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
+
+
+                  <FontAwesome5 name="wine-bottle" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
+                </View>
+                <Text style={{ fontWeight: "700" }}>
+                  Cart Black
                 </Text>
               </View>
             </TouchableOpacity>

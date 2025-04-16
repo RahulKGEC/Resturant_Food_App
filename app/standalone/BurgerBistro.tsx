@@ -23,7 +23,7 @@ const Details = () => {
 
 
                     <View style={{ alignItems: "center" }}>
-                        <View style={{ height: 270, width: "100%", backgroundColor: "#FFB869", borderRadius: 23, marginVertical: 15, alignItems: "center" }}>
+                        <View style={{ height: 270, width: "100%", backgroundColor: "#FFB869", borderRadius: 23, marginBottom:15, alignItems: "center" }}>
 
 
                             <Image source={{ uri: "https://clipartspub.com/images/pizza-clipart-clip-art-7.jpg" }} style={{ height: 150, width: 170, position: "absolute", top: 97 }} />
@@ -149,7 +149,7 @@ const Details = () => {
                     <View style={{ flexDirection: "row", alignItems: "center", gap: 14, marginVertical: 12 }}>
                         <Text>SIZE :</Text>
 
-                        {sizes.map((size, index) => (
+                        {sizes.map((size, index:any) => (
                             <TouchableOpacity key={index} onPress={() => setSelectedSize(index)}
 
                             >

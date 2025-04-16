@@ -4,6 +4,7 @@ import { AntDesign, Entypo, Feather, FontAwesome, FontAwesome5, MaterialCommunit
 import { BlurView } from 'expo-blur';
 import Cart4 from '@/components/myComponents/Cart4';
 import { useRouter } from 'expo-router';
+import Cart3 from '@/components/myComponents/Cart3';
 
 
 
@@ -340,6 +341,11 @@ const Details = () => {
                         </View>
                     </View>
 
+
+
+
+
+                    {/* 3rd Section  */}
                     <TouchableOpacity style={{ height: 50, width: "100%", marginTop: 12, backgroundColor: "#FF7622", justifyContent: "center", alignItems: "center", borderRadius: 10 }} onPress={() => route.push("/standalone/BurgerBistro")}>
                         <Text style={{ color: "white" }}>
                             ADD TO CART
@@ -347,6 +353,10 @@ const Details = () => {
                     </TouchableOpacity>
 
 
+
+
+                    {/* 3rd Section  */}
+             
 
 
 

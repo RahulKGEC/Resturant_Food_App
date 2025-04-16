@@ -31,7 +31,7 @@ const Cart3 = () => {
                 <View style={{ marginHorizontal: 5, gap: 3 }}>
                     <Text style={{ fontSize: 14, fontWeight: "700" }}>European Pizza</Text>
                     <Text style={{ fontSize: 13, fontWeight: "400", color: "gray" }}>
-                        Uttora Coffee House3
+                        Uttora Coffee
                     </Text>
                 </View>
 
@@ -57,7 +57,7 @@ const Cart3 = () => {
                         >
 
 
-                            <AntDesign name="plus" size={26}  color="white" />
+                            <AntDesign name="plus" size={20}  color="white" />
 
                         </View>
                     </View>

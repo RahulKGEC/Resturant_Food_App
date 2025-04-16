@@ -10,7 +10,7 @@ import { IconSymbol } from '@/components/ui/IconSymbol'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 const home = () => {
   const route = useRouter()
-  const [model,setModel]=useState(true)
+  const [model, setModel] = useState(true)
   const [bg, setBg] = useState("white");
 
   const navigation = useNavigation();
@@ -299,79 +299,79 @@ const home = () => {
 
             {/* 8th Section */}
 
-{model &&
+            {model &&
 
-            <View style={{ height: 350, width: "90%", borderRadius: 18, position: "absolute", top: -250, left: 10, }}>
+              <View style={{ height: 350, width: "90%", borderRadius: 18, position: "absolute", top: -250, left: 10, }}>
 
-              <LinearGradient
-                colors={['#F6BD21', '#E66E00']} // top to bottom gradient
-                style={{ flex: 1, borderRadius: 30 }}
-              >
-                <Text style={{
-                  fontWeight: "900",
-                  fontSize: 33,
-                  color: "white",
-                  textAlign: "center",
-                  marginTop: 60
-                }}>
-                  Hurry Offers!
-                </Text>
+                <LinearGradient
+                  colors={['#F6BD21', '#E66E00']} // top to bottom gradient
+                  style={{ flex: 1, borderRadius: 30 }}
+                >
+                  <Text style={{
+                    fontWeight: "900",
+                    fontSize: 33,
+                    color: "white",
+                    textAlign: "center",
+                    marginTop: 60
+                  }}>
+                    Hurry Offers!
+                  </Text>
 
 
-                <Text style={{
-                  fontWeight: "900",
-                  fontSize: 24,
-                  color: "white",
-                  textAlign: "center",
-                  marginTop: 40
-                }}>
-                  #1243CD2
-                </Text>
-                <Text style={{
-                  fontWeight: "900",
-                  fontSize: 15,
-                  color: "white",
-                  textAlign: "center",
-                  marginTop: 40
-                }}>
-                  Use the coupon get 25% discount
-                </Text>
+                  <Text style={{
+                    fontWeight: "900",
+                    fontSize: 24,
+                    color: "white",
+                    textAlign: "center",
+                    marginTop: 40
+                  }}>
+                    #1243CD2
+                  </Text>
+                  <Text style={{
+                    fontWeight: "900",
+                    fontSize: 15,
+                    color: "white",
+                    textAlign: "center",
+                    marginTop: 40
+                  }}>
+                    Use the coupon get 25% discount
+                  </Text>
 
-                <View style={{ justifyContent: "center", alignItems: "center", }}>
+                  <View style={{ justifyContent: "center", alignItems: "center", }}>
 
-                  <View style={{ borderColor: "white", borderWidth: 2, height: 48, width: "80%", marginTop: 29, borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
-                    <Text style={{ color: "white", fontSize: 17 }}>
-                      GOT IT
-                    </Text>
+                    <View style={{ borderColor: "white", borderWidth: 2, height: 48, width: "80%", marginTop: 29, borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
+                      <Text style={{ color: "white", fontSize: 17 }}>
+                        GOT IT
+                      </Text>
+                    </View>
                   </View>
+
+                </LinearGradient>
+                <View
+                  style={{
+                    height: 35,
+                    width: 35,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: "50%",
+                    backgroundColor: "#F6BD21",
+                    // flexDirection:"row"
+                    position: "absolute",
+                    right: -10,
+                    top: -10
+                  }}
+                >
+
+
+                  <Icon name="close" size={30} color="#E66E00" onPress={() => setModel(!model)} />
+
                 </View>
-
-              </LinearGradient>
-              <View
-                style={{
-                  height: 35,
-                  width: 35,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: "50%",
-                  backgroundColor: "#F6BD21",
-                  // flexDirection:"row"
-                  position: "absolute",
-                  right:-10,
-                top:-10
-                }}
-              >
-
-
-<Icon name="close" size={30} color="#E66E00" onPress={()=>setModel(!model)} />
 
               </View>
 
-            </View>
 
 
-
-              }
+            }
 
 
 
