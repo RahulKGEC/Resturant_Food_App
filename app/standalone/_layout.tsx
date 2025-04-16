@@ -15,6 +15,7 @@ const _layout = () => {
       <Stack.Screen name="Map" options={{ title: "Map", headerShown: false }} />
       <Stack.Screen name="squareDetail" options={{ title: "squareDetail", headerShown: false }} />
       <Stack.Screen name="Search" options={{ title: "Search", headerShown: false }} />
+      <Stack.Screen name="Burger" options={{ title: "Burger", headerShown: false }} />
     </Stack>
   );
 };

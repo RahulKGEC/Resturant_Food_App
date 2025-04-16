@@ -178,31 +178,31 @@ const home = () => {
             </TouchableOpacity>
 
 
+            <TouchableOpacity onPress={() => route.push("/standalone/Burger")}>
+              <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
+                <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
 
-            <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
-              <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
-
-                <FontAwesome5 name="hamburger" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
+                  <FontAwesome5 name="hamburger" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
+                </View>
+                <Text style={{ fontWeight: "700" }}>
+                  Hot Dog
+                </Text>
               </View>
-              <Text style={{ fontWeight: "700" }}>
-                Hot Dog
-              </Text>
-            </View>
+            </TouchableOpacity>
 
 
+            <TouchableOpacity onPress={() => route.push("/standalone/Details")}>
+              <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
+                <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
 
-            <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
-              <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
 
-
-                <FontAwesome5 name="wine-bottle" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
+                  <FontAwesome5 name="wine-bottle" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
+                </View>
+                <Text style={{ fontWeight: "700" }}>
+                  Bear
+                </Text>
               </View>
-              <Text style={{ fontWeight: "700" }}>
-                Hot Dog
-              </Text>
-            </View>
-
-
+            </TouchableOpacity>
 
           </ScrollView>
 

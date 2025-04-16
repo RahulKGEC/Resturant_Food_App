@@ -2,6 +2,7 @@ import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, Touchable
 import React from 'react'
 import { AntDesign, Entypo, Feather, FontAwesome, FontAwesome5 } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
+import Cart2 from '@/components/myComponents/Cart2'
 
 const Search = () => {
     const route = useRouter()
@@ -231,6 +232,10 @@ const Search = () => {
                             </View>
                         </View>
 
+                        {/* HoriZontal Row */}
+                        <View style={{ borderBottomColor: "#BFBFBF", borderWidth: 0.5 }}></View>
+
+
                         <View style={{ flexDirection: "row", gap: 16, alignItems: "center" }}>
                             <View
                                 style={{
@@ -264,7 +269,73 @@ const Search = () => {
                                 </View>
                             </View>
                         </View>
+                        {/* HoriZontal Row */}
+                        <View style={{ borderBottomColor: "#BFBFBF", borderWidth: 0.5 }}></View>
+
+                        <View style={{ flexDirection: "row", gap: 16, alignItems: "center" }}>
+                            <View
+                                style={{
+                                    height: 50,
+                                    width: 50,
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    borderRadius: 25, // half of 50 for circle
+                                    backgroundColor: "#C9C9C9",
+                                }}
+                            >
+                                <Image
+                                    source={{
+                                        uri: "https://tse3.mm.bing.net/th?id=OIP.s0KYKCeZL71ctv5UHRNP7gHaEo&pid=Api&P=0&h=180",
+                                    }}
+                                    style={{ width: 50, height: 50, borderRadius: 15 }}
+                                />
+                            </View>
+
+                            <View>
+                                <Text style={{ fontSize: 14, fontWeight: "800", marginBottom: 2 }}>
+                                    Pansi Resturant
+                                </Text>
+                                <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
+                                    <AntDesign
+                                        name="staro"
+                                        size={18}
+                                        style={{ color: "#FF7622", fontWeight: "600" }}
+                                    />
+                                    <Text style={{ fontSize: 13, fontWeight: "500" }}>Rahul Shaw</Text>
+                                </View>
+                            </View>
+                        </View>
+                        {/* HoriZontal Row */}
+                        <View style={{ borderBottomColor: "#BFBFBF", borderWidth: 0.5 }}></View>
+
+
+
                     </View>
+
+                    {/* 4th Section */}
+                    <View style={{ marginVertical: 15 }}>
+
+                        <Text style={{ fontSize: 22, fontWeight: "400" }}>
+                            Popular Fast Food
+                        </Text>
+                    </View>
+
+                    {/* 5th Section */}
+                    <View style={{ flexDirection: "row", gap: 14, flexWrap: "wrap" }}>
+
+                        <Cart2 />
+                        <Cart2 />
+                        <Cart2 />
+                        <Cart2 />
+                        <Cart2 />
+                        <Cart2 />
+                        <Cart2 />
+                        <Cart2 />
+                        <Cart2 />
+
+
+                    </View>
+
 
 
                 </View>

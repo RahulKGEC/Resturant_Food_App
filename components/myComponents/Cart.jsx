@@ -17,7 +17,7 @@ const Cart = () => {
                 gap: 10
             }}>
                 <Image source={{uri:'https://tse1.mm.bing.net/th?id=OIP.g9meiANJcKP0ekLeCy4laQHaE7&pid=Api&P=0&h=180'}} style={{ width: "100%", height: 130, borderRadius: 18 }} />
-                <Text style={{ fontWeight: "600", fontSize: 21 }}>
+                <Text style={{ fontWeight: "500", fontSize: 21 }}>
                     Rose Garden Resturant
                 </Text>
                 <Text style={{ fontWeight: "400", fontSize: 14, color: "#BFBFBF" }}>
