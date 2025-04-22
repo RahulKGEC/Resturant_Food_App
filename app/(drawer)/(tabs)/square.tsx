@@ -1,14 +1,36 @@
-import { ImageComponent, SafeAreaView, ScrollView, StyleSheet, Image, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import { ImageComponent, SafeAreaView, ScrollView, StyleSheet, Image, Text, TouchableOpacity, View, Modal } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
 import { AntDesign, Entypo, Feather, FontAwesome, FontAwesome5, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
-import { useNavigation, useRouter } from 'expo-router'
+import { Link, useNavigation, useRouter } from 'expo-router'
 import { DrawerActions } from '@react-navigation/native'
 // import { TextInput } from 'react-native-gesture-handler'
 import { TextInput } from 'react-native'
 import Cart from "../../../components/myComponents/Cart"
+import ModalComponent from '@/components/myComponents/model'
+import Carousel from '@/components/myComponents/Carousel'
+import { CartContext } from '.'
 const home = () => {
   const route = useRouter()
+  const [data, setData] = useState([])
   const [bg, setBg] = useState("white");
+  const [modalVisible, setModalVisible] = useState(false)
+  const { signup, setSignup, addANEWMember, allsignup, setAllsignup } = useContext(CartContext)
+
+
+  useEffect(() => {
+    fetch('https://dummyjson.com/recipes')
+      .then(res => res.json())
+      .then(data => setData(data))
+  }, [])
+
+  const { recipes } = data
+  // console.log(recipes)
+
+
+
+  const toggleModal = () => {
+    setModalVisible(!modalVisible)
+  }
 
   const navigation = useNavigation();
   const drawerOpen = () => {
@@ -20,7 +42,7 @@ const home = () => {
     <SafeAreaView>
       <ScrollView>
         <View>
-
+          <Carousel />
 
           <View style={{ marginHorizontal: 18 }}>
 
@@ -111,7 +133,7 @@ const home = () => {
             {/* //2nd phase */}
 
             <View style={{ flexDirection: "row", marginVertical: 15 }}>
-              <Text style={{ fontSize: 15 }}>Hey Halal,</Text> <Text style={{ fontSize: 15, fontWeight: "700" }}>  Good Afternoon!</Text>
+              <Text style={{ fontSize: 15 }}>Hey {allsignup[0]?.name|| "Roshan"},</Text> <Text style={{ fontSize: 15, fontWeight: "700" }}>  Good Afternoon!</Text>
             </View>
 
 
@@ -127,8 +149,10 @@ const home = () => {
 
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginVertical: 15 }}>
               <View>
-                <Text style={{ fontSize: 18, fontWeight: "500" }}>
-                  All Categories
+                <Text style={{ fontSize: 18, fontWeight: "500" }} onPress={toggleModal}>
+                  {/* <Link href="/standalone/modal" style={{}}> */}
+                  Open modal
+                  {/* </Link> */}
                 </Text>
               </View>
               <TouchableOpacity onPress={() => { route.push('/standalone/squareDetail1') }}
@@ -178,6 +202,45 @@ const home = () => {
             </TouchableOpacity>
 
 
+
+            <TouchableOpacity onPress={() => route.push("/standalone/Congratulations")}>
+              <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
+                <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
+
+                  <FontAwesome5 name="hamburger" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
+                </View>
+                <Text style={{ fontWeight: "700" }}>
+                  Congratulations
+                </Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => route.push("/standalone/AddCard")}>
+              <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
+                <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
+
+                  <FontAwesome5 name="hamburger" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
+                </View>
+                <Text style={{ fontWeight: "700" }}>
+                  AddCard
+                </Text>
+              </View>
+            </TouchableOpacity>
+
+
+
+            <TouchableOpacity onPress={() => route.push("/standalone/Payment")}>
+              <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
+                <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
+
+                  <FontAwesome5 name="hamburger" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
+                </View>
+                <Text style={{ fontWeight: "700" }}>
+                  Payment
+                </Text>
+              </View>
+            </TouchableOpacity>
+
             <TouchableOpacity onPress={() => route.push("/standalone/Burger")}>
               <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#FFD27C", height: 43, paddingHorizontal: 10, marginRight: 15, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20 }}>
                 <View style={{ height: 35, width: 35, borderRadius: 50, backgroundColor: "#E0E0E0", justifyContent: "center", alignItems: "center" }}>
@@ -199,10 +262,13 @@ const home = () => {
                   <FontAwesome5 name="hamburger" size={21} style={{ fontWeight: "700", color: "#FF7622" }} />
                 </View>
                 <Text style={{ fontWeight: "700" }}>
-                  Resturant View 
+                  Resturant View
                 </Text>
               </View>
             </TouchableOpacity>
+
+
+
 
 
             <TouchableOpacity onPress={() => route.push("/standalone/SpicyResturant")}>
@@ -259,16 +325,60 @@ const home = () => {
             {/* 7th Section  */}
 
 
-            <Cart />
-            <Cart />
-            <Cart />
-            <Cart />
-            <Cart />
-            <Cart />
+            {recipes?.map((ele) => (
+
+              <TouchableOpacity onPress={() => route.push(`/standalone/BurgerBistro?id=${ele?.id}`)}>
 
 
 
+                <View style={{
+                  width: "100%", height: 250,
+                  //  borderColor: "red", borderWidth: 2 ,
+                  gap: 10
+                }}>
+                  <Image source={{ uri: ele.image }} style={{ width: "100%", height: 130, borderRadius: 18 }} />
+                  <Text style={{ fontWeight: "500", fontSize: 21 }}>
+                    {ele.name}
+                  </Text>
+                  <Text style={{ fontWeight: "400", fontSize: 14, color: "#BFBFBF" }}>
+                    {ele.tags && `${ele.tags[0]} - Chicken - Riche -  ${ele.tags[1]}`}
+                  </Text>
 
+
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 20 }}>
+                    <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+                      {/* <FontAwesome name="star" size={24} color="gold" /> */}
+                      <FontAwesome name="star-o" size={24} color="#FF7622" />
+                      <Text style={{ fontWeight: "800", fontSize: 15 }}>
+                        {ele.rating}
+                      </Text>
+
+                    </View>
+
+                    <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+                      {/* <FontAwesome name="star" size={24} color="gold" /> */}
+                      <MaterialCommunityIcons name="truck-fast-outline" size={24} color="#FF7622" />
+                      <Text style={{ fontWeight: "800", fontSize: 15 }}>
+                        {ele.reviewCount}
+                      </Text>
+
+                    </View>
+
+                    <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+                      {/* <FontAwesome name="star" size={24} color="gold" /> */}
+                      <AntDesign name="clockcircleo" size={22} color="#FF7622" />
+                      <Text style={{ fontWeight: "800", fontSize: 15 }}>
+                        {ele.servings}
+                      </Text>
+
+                    </View>
+                  </View>
+
+
+                </View>
+              </TouchableOpacity>
+
+            ))}
 
 
 
@@ -284,6 +394,7 @@ const home = () => {
 
           </View>
         </View>
+        <ModalComponent modalVisible={modalVisible} setModalVisible={setModalVisible} />
       </ScrollView>
     </SafeAreaView >
   )

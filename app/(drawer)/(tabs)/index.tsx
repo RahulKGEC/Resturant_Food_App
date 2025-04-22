@@ -16,8 +16,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Feather, FontAwesome, Fontisto, Ionicons } from "@expo/vector-icons";
 import { DrawerActions } from "@react-navigation/native";
 import { useNavigation, useRouter } from "expo-router";
-
+export const CartContext = createContext(null)
 import EditScreen from "@/app/standalone/EditScreen";
+import { createContext } from "react";
 
 export default function HomeScreen() {
   const navigation = useNavigation();

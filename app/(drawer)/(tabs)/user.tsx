@@ -1,7 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from '.';
 
 const user = () => {
+
+  const {  } = useContext(CartContext);
   return (
     <View>
       <Text>user</Text>

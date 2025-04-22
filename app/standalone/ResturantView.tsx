@@ -1,5 +1,5 @@
 import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AntDesign, Entypo, Feather, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 import Cart3 from '@/components/myComponents/Cart3'
@@ -9,9 +9,28 @@ import { LinearGradient } from 'expo-linear-gradient'
 const ResturantView = () => {
     //   const route = useRouter()
     const [model, setModel] = useState(true)
+    const [item, setItem] = useState("margherita")
     const [activeIndex, setActiveIndex] = useState(null);
 
-    const foodItems = ["Delivery", "Pick Up", "Offer", "Online payment available"];
+    const [detail, setDetail] = useState({})
+    const [search, setSearch] = useState([])
+    const { recipes } = search
+    console.log(recipes)
+    useEffect(() => {
+        fetch(`https://dummyjson.com/recipes/3`)
+            .then(res => res.json())
+            .then(data => setDetail(data));
+    }, [])
+
+
+
+    useEffect(() => {
+        fetch(`https://dummyjson.com/recipes/search?q=${item}`)
+            .then(res => res.json())
+            .then(data => setSearch(data));
+    }, [item])
+
+    const foodItems = ["mango", "Pizza", "Banana","masala","Soup"];
 
     const time = ["10-15 min", "20 min", "30 min"]
     const pricing = ["$", "$$", "$$$"]
@@ -97,7 +116,7 @@ const ResturantView = () => {
                                 {/* <FontAwesome name="star" size={24} color="gold" /> */}
                                 <FontAwesome name="star-o" size={24} color="#FF7622" />
                                 <Text style={{ fontWeight: "800", fontSize: 15 }}>
-                                    4.7
+                                    {detail.rating}
                                 </Text>
 
                             </View>
@@ -106,7 +125,7 @@ const ResturantView = () => {
                                 {/* <FontAwesome name="star" size={24} color="gold" /> */}
                                 <MaterialCommunityIcons name="truck-fast-outline" size={24} color="#FF7622" />
                                 <Text style={{ fontWeight: "800", fontSize: 15 }}>
-                                    free
+                                    {detail.reviewCount > 80 ? "Free" : "$ 50"}
                                 </Text>
 
                             </View>
@@ -115,7 +134,7 @@ const ResturantView = () => {
                                 {/* <FontAwesome name="star" size={24} color="gold" /> */}
                                 <AntDesign name="clockcircleo" size={22} color="#FF7622" />
                                 <Text style={{ fontWeight: "800", fontSize: 15 }}>
-                                    20 min
+                                    {detail.servings} min
                                 </Text>
 
                             </View>
@@ -134,7 +153,7 @@ const ResturantView = () => {
                             {foodItems.map((item, index: any) => (
                                 <TouchableOpacity
                                     key={index}
-                                    onPress={() => setActiveIndex(index)}
+                                    onPress={() => { setItem(foodItems[index]), setActiveIndex(index) }}
                                     style={{
                                         // gap: 100,
                                         flexDirection: "row",
@@ -169,18 +188,77 @@ const ResturantView = () => {
 
 
                     <View style={{ display: "flex", flexDirection: 'row', flexWrap: "wrap", gap: 15 }}>
-                        <Cart3 />
-                        <Cart3 />
-                        <Cart3 />
-                        <Cart3 />
-                        <Cart3 />
-                        <Cart3 />
-                        <Cart3 />
+                        {recipes?.length && recipes.map((ele) => (
+
+
+                            <View
+                                key={ele.id}
+                                style={{
+                                    // height: 220,
+                                    width: 150,
+                                    borderRadius: 18,
+                                    backgroundColor: "#fff",
+                                    padding: 8,
+                                    marginTop: 60,
+
+                                    // iOS shadow
+                                    shadowColor: "#000",
+                                    shadowOffset: { width: 3, height: 5 }, // right and bottom
+                                    shadowOpacity: 0.2,
+                                    shadowRadius: 5,
+
+                                    // Android shadow
+                                    elevation: 6,
+
+                                }}
+                            >
+                                <View style={{ alignItems: "center" }}>
+                                    <Image
+                                        source={{ uri: ele.image }}
+                                        style={{ width: 110, height: 99, borderRadius: 15, position: "absolute", top: -65 }}
+                                    />
+                                </View>
+                                <View style={{ marginHorizontal: 5, gap: 3, marginTop: 34 }}>
+                                    <Text style={{ fontSize: 14, fontWeight: "700" }}>{ele.name}</Text>
+                                    <Text style={{ fontSize: 13, fontWeight: "400", color: "gray" }}>
+                                        {ele.cuisine}
+                                    </Text>
+                                </View>
+
+
+                                <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 4, marginTop: 5 }}>
+
+                                    <View >
+                                        <Text style={{ fontWeight: "700", fontSize: 17 }}>
+                                            $ {ele.cookTimeMinutes}
+                                        </Text>
+                                    </View>
+                                    <View>
+                                        <View
+                                            style={{
+                                                height: 30,
+                                                width: 30,
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                borderRadius: "50%",
+                                                backgroundColor: "#FF7622",
+                                                // flexDirection:"row"
+                                            }}
+                                        >
+
+
+                                            <AntDesign name="plus" size={20} color="white" />
+
+                                        </View>
+                                    </View>
+                                </View>
+                            </View>
+
+
+
+
+                        ))}
                     </View>
-
-
-
-
 
 
 
@@ -212,7 +290,7 @@ const ResturantView = () => {
 
                 {model &&
 
-                    <View style={{ width: "90%", borderWidth: 2,borderColor:"rgba(0,0,0,0.3)", borderRadius: 18, position: "absolute", top: 170, left: 15, backgroundColor: "white" }}>
+                    <View style={{ width: "90%", borderWidth: 2, borderColor: "rgba(0,0,0,0.3)", borderRadius: 18, position: "absolute", top: 170, left: 15, backgroundColor: "white" }}>
 
                         <View style={{ marginHorizontal: 18 }}>
 

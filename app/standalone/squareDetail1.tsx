@@ -6,7 +6,7 @@ import { DrawerActions } from '@react-navigation/native'
 import { TextInput } from 'react-native'
 import Cart from "../../components/myComponents/Cart"
 import { LinearGradient } from 'expo-linear-gradient';
-import { IconSymbol } from '@/components/ui/IconSymbol'
+// import { IconSymbol } from '@/components/ui/IconSymbol'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 const home = () => {
   const route = useRouter()

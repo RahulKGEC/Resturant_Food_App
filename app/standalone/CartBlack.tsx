@@ -1,11 +1,44 @@
 import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { AntDesign, Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
+import { CartContext } from '../(drawer)/(tabs)'
 
 const CartBlack = () => {
-    const [qty, setUpdateQTY] = useState(1)
 
+
+    const { addToCart, wish, setCart, setWish, cart, addToWish, deleteFromCart, deleteFromWish } = useContext(CartContext)
+    const updateQTY = (ele1, dependency) => {
+        if (dependency === 1) {
+            const updated = cart.map((ele) => {
+                if (ele.id === ele1.id) {
+
+                    return { ...ele1, qty: ele1.qty + 1 }
+                }
+                else {
+                    return ele
+                }
+
+            })
+
+            setCart(updated)
+        }
+        if (dependency === 0) {
+            const updated = cart.map((ele) => {
+                if (ele.id === ele1.id) {
+
+                    return { ...ele, qty: ele?.qty - 1 }
+                }
+                else {
+                    return ele
+                }
+
+            })
+
+            setCart(updated)
+        }
+
+    }
 
 
     const route = useRouter()
@@ -51,249 +84,132 @@ const CartBlack = () => {
                         </TouchableOpacity>
 
                     </View>
+                    {cart?.length && cart.map((ele) => (
 
 
-                    <View
-                        //   key={index}
-                        style={[
-                            {
-                                height: 150,
-                                width: "100%",
-                                marginTop: 20,
-                                marginHorizontal: "auto",
-                                flexDirection: "row",
-                                gap: 12,
-                                paddingVertical: 10,
-                                paddingHorizontal: 10,
-                                backgroundColor: "black",
-                                borderRadius: 10,
 
-                                // 
-                            },
-                        ]}
-                    >
                         <View
+                            //   key={index}
                             style={[
                                 {
-                                    height: 110,
-                                    width: 110,
-                                    marginVertical: "auto",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    backgroundColor: "#EDD3D4",
+                                    height: 150,
+                                    width: "100%",
+                                    marginTop: 20,
+                                    marginHorizontal: "auto",
+                                    flexDirection: "row",
+                                    gap: 12,
+                                    paddingVertical: 10,
+                                    paddingHorizontal: 10,
+                                    backgroundColor: "black",
                                     borderRadius: 10,
+
+                                    // 
                                 },
                             ]}
                         >
-                            <Image
-                                source={{ uri: "https://tse3.mm.bing.net/th?id=OIP.ODzNVC9vgjSXIHv35FqzMAHaEo&pid=Api&P=0&h=180" }}
-                                style={{ height: 100, width: 100 }}
-                            />
-                        </View>
-
-                        <View
-                            style={[
-                                {
-                                    height: 70,
-                                    width: 100,
-                                    marginVertical: "auto",
-                                    marginLeft: 13,
-                                    gap: 10,
-                                    justifyContent: "center",
-                                    alignItems: "flex-start",
-
-                                },
-                            ]}
-                        >
-                            <Text style={{ fontSize: 12, color: "white" }}>
-                                Pizza Calzone European
-                            </Text>
-                            <Text
-                                style={{
-                                    fontSize: 14,
-                                    fontWeight: "800",
-                                    alignSelf: "flex-start",
-                                    color: "white"
-                                }}
+                            <View
+                                style={[
+                                    {
+                                        height: 110,
+                                        width: 110,
+                                        marginVertical: "auto",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        backgroundColor: "#EDD3D4",
+                                        borderRadius: 10,
+                                    },
+                                ]}
                             >
-                                $ 56
-                            </Text>
-
-                            <Text style={{ fontSize: 12, color: "grey" }}>
-                                14"
-                            </Text>
-                        </View>
-                        <View
-                            style={[
-                                {
-                                    height: 70,
-                                    width: 70,
-                                    marginVertical: "auto",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    gap: 10,
-                                },
-                            ]}
-                        >
+                                <Image
+                                    source={{ uri: ele.image }}
+                                    style={{ height: 100, width: 100 }}
+                                />
+                            </View>
 
                             <View
                                 style={[
                                     {
-                                        height: 30,
-                                        width: 55,
-                                        borderRadius: 7,
-                                        flexDirection: "row",
-                                        gap: 14,
-                                        alignItems: "center",
+                                        height: 70,
+                                        width: 100,
+                                        marginVertical: "auto",
+                                        marginLeft: 13,
+                                        gap: 10,
                                         justifyContent: "center",
-                                        position: "absolute",
-                                        top: 70,
-                                        left: -29
+                                        alignItems: "flex-start",
+
                                     },
                                 ]}
                             >
-                                <View style={{ height: 30, width: 30, borderRadius: 50, backgroundColor: "#2A2A39", justifyContent: "center", alignItems: "center" }}>
+                                <Text style={{ fontSize: 12, color: "white" }}>
+                                    {ele?.name}
+                                </Text>
+                                <Text
+                                    style={{
+                                        fontSize: 14,
+                                        fontWeight: "800",
+                                        alignSelf: "flex-start",
+                                        color: "white"
+                                    }}
+                                >
+                                    $ {ele.cookTimeMinutes * ele.qty}
+                                </Text>
 
-                                    <Entypo
-                                        name="plus"
-                                        style={{ fontSize: 22, color: "white" }}
-                                        onPress={() => { setUpdateQTY(qty + 1) }}
-                                    />
-                                </View>
-
-                                <Text style={{ fontSize: 11, color: "white" }}>{qty}</Text>
-                                <View style={{ height: 30, width: 30, borderRadius: 50, backgroundColor: "#2A2A39", justifyContent: "center", alignItems: "center" }}>
-
-                                    <Entypo
-                                        name="minus"
-                                        style={{ fontSize: 22, color: "white" }}
-                                        onPress={() => { setUpdateQTY(qty - 1) }}
-                                    />
-                                </View>
+                                <Text style={{ fontSize: 12, color: "grey" }}>
+                                    14"
+                                </Text>
                             </View>
-                        </View>
-                    </View>
-
-                    <View
-                        //   key={index}
-                        style={[
-                            {
-                                height: 150,
-                                width: "100%",
-                                marginTop: 20,
-                                marginHorizontal: "auto",
-                                flexDirection: "row",
-                                gap: 12,
-                                paddingVertical: 10,
-                                paddingHorizontal: 10,
-                                backgroundColor: "black",
-                                borderRadius: 10,
-
-                                // 
-                            },
-                        ]}
-                    >
-                        <View
-                            style={[
-                                {
-                                    height: 110,
-                                    width: 110,
-                                    marginVertical: "auto",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    backgroundColor: "#EDD3D4",
-                                    borderRadius: 10,
-                                },
-                            ]}
-                        >
-                            <Image
-                                source={{ uri: "https://tse3.mm.bing.net/th?id=OIP.ODzNVC9vgjSXIHv35FqzMAHaEo&pid=Api&P=0&h=180" }}
-                                style={{ height: 100, width: 100 }}
-                            />
-                        </View>
-
-                        <View
-                            style={[
-                                {
-                                    height: 70,
-                                    width: 100,
-                                    marginVertical: "auto",
-                                    marginLeft: 13,
-                                    gap: 10,
-                                    justifyContent: "center",
-                                    alignItems: "flex-start",
-
-                                },
-                            ]}
-                        >
-                            <Text style={{ fontSize: 12, color: "white" }}>
-                                Pizza Calzone European
-                            </Text>
-                            <Text
-                                style={{
-                                    fontSize: 14,
-                                    fontWeight: "800",
-                                    alignSelf: "flex-start",
-                                    color: "white"
-                                }}
-                            >
-                                $ 56
-                            </Text>
-
-                            <Text style={{ fontSize: 12, color: "grey" }}>
-                                14"
-                            </Text>
-                        </View>
-                        <View
-                            style={[
-                                {
-                                    height: 70,
-                                    width: 70,
-                                    marginVertical: "auto",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    gap: 10,
-                                },
-                            ]}
-                        >
-
                             <View
                                 style={[
                                     {
-                                        height: 30,
-                                        width: 55,
-                                        borderRadius: 7,
-                                        flexDirection: "row",
-                                        gap: 14,
-                                        alignItems: "center",
+                                        height: 70,
+                                        width: 70,
+                                        marginVertical: "auto",
                                         justifyContent: "center",
-                                        position: "absolute",
-                                        top: 70,
-                                        left: -29
+                                        alignItems: "center",
+                                        gap: 10,
                                     },
                                 ]}
                             >
-                                <View style={{ height: 30, width: 30, borderRadius: 50, backgroundColor: "#2A2A39", justifyContent: "center", alignItems: "center" }}>
 
-                                    <Entypo
-                                        name="plus"
-                                        style={{ fontSize: 22, color: "white" }}
-                                        onPress={() => { setUpdateQTY(qty + 1) }}
-                                    />
-                                </View>
+                                <View
+                                    style={[
+                                        {
+                                            height: 30,
+                                            width: 55,
+                                            borderRadius: 7,
+                                            flexDirection: "row",
+                                            gap: 14,
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            position: "absolute",
+                                            top: 70,
+                                            left: -29
+                                        },
+                                    ]}
+                                >
+                                    <View style={{ height: 30, width: 30, borderRadius: 50, backgroundColor: "#2A2A39", justifyContent: "center", alignItems: "center" }}>
 
-                                <Text style={{ fontSize: 11, color: "white" }}>{qty}</Text>
-                                <View style={{ height: 30, width: 30, borderRadius: 50, backgroundColor: "#2A2A39", justifyContent: "center", alignItems: "center" }}>
+                                        <Entypo
+                                            name="plus"
+                                            style={{ fontSize: 22, color: "white" }}
+                                            onPress={() => { updateQTY(ele, 1) }}
+                                        />
+                                    </View>
 
-                                    <Entypo
-                                        name="minus"
-                                        style={{ fontSize: 22, color: "white" }}
-                                        onPress={() => { setUpdateQTY(qty - 1) }}
-                                    />
+                                    <Text style={{ fontSize: 11, color: "white" }}>{ele.qty}</Text>
+                                    <View style={{ height: 30, width: 30, borderRadius: 50, backgroundColor: "#2A2A39", justifyContent: "center", alignItems: "center" }}>
+
+                                        <Entypo
+                                            name="minus"
+                                            style={{ fontSize: 22, color: "white" }}
+                                            onPress={() => { ele.qty === 0 ? deleteFromCart(ele.id) : updateQTY(ele, 0) }}
+                                        />
+                                    </View>
                                 </View>
                             </View>
                         </View>
-                    </View>
+                    ))}
+
 
                 </View>
 
@@ -327,16 +243,16 @@ const CartBlack = () => {
 
                             <TextInput placeholder='I love fast Food' style={{ paddingVertical: 15, backgroundColor: "#E0E0E0", paddingHorizontal: 15, borderRadius: 14, fontSize: 14, marginVertical: 13, }} />
                         </View>
-                        <View style={{ justifyContent: "space-between", flexDirection: "row", alignItems: "center" ,marginVertical:15 }}>
+                        <View style={{ justifyContent: "space-between", flexDirection: "row", alignItems: "center", marginVertical: 15 }}>
                             <View style={{ flexDirection: "row", alignItems: "center" }}>
-                                <Text style={{ color: "gray" }}> TOTAL : </Text>
-                                <Text style={{ fontSize: 22, color: "black", fontWeight: "500", }}> $96</Text>
+                                <Text style={{ color: "gray" }}> TOTAL :</Text>
+                                <Text style={{ fontSize: 22, color: "black", fontWeight: "500", }}> $ {cart.reduce((acc, ele) => acc + (ele?.qty * ele?.cookTimeMinutes), 0)}</Text>
                             </View>
 
                             <View>
-                            
+
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <Text style={{  color: "#FF7622", marginRight: 5 }}>Breakdown</Text>
+                                    <Text style={{ color: "#FF7622", marginRight: 5 }}>Breakdown</Text>
                                     <AntDesign name="right" size={12} color="#2A2A39" />
                                 </View>
 

@@ -1,36 +1,87 @@
 import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AntDesign, Entypo, Feather, FontAwesome, FontAwesome5, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { BlurView } from 'expo-blur';
 import Cart4 from '@/components/myComponents/Cart4';
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import { CartContext } from '../(drawer)/(tabs)';
+import CartBlack from './CartBlack';
 
 
 
 
 const Details = () => {
 
+
+    const { wish, cart, setCart, setWish, signup, setSignup, addANEWMember, allsignup, setAllsignup, addToCart, addToWish, deleteFromCart, deleteFromWish } = useContext(CartContext)
     const route = useRouter()
     const [selectedSize, setSelectedSize] = useState(null);
+    const [qty, setQty] = useState(1)
+    const [detail, setDetail] = useState({})
+    const { id } = useLocalSearchParams()
+    const item = cart.find((ele) => ele?.id == id);
+    useEffect(() => {
+        if(item?.qty){
+
+            console.log("item ok ", item);
+            setQty(item?.qty);
+        }
+    
+    
+    
+    }, [item?.qty]);
+    
+
+    // const qytData =  cart?.find(i=>i?.id==id)
+    // useEffect(()=>{
+    //     if(qytData?.qty){
+    //     setQty(qytData?.qty)
+    //     }
+    // },[qytData?.qty])
+
+    // useEffect(() => {
+    //     alert('alert')
+    //     fetch(`https://dummyjson.com/recipes/${id}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setDetail(data)
+    //             fetchQTY(data?.id)
+    //         });
+    // },)
+
+
+
+    useFocusEffect(
+        React.useCallback(() => {
+            // alert('alert')
+            fetch(`https://dummyjson.com/recipes/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    setDetail(data)
+                    fetchQTY(id)
+                });
+            return () => {
+
+            };
+        }, [id]))
 
     const sizes = ["10\"", "12\"", "14\""];
-    const [wish, setWish] = useState(true)
+    // const [wish, setWish] = useState(true)
     return (
         <SafeAreaView>
             <ScrollView>
                 <View style={{ marginHorizontal: 18 }}>
 
 
-
                     <View style={{ alignItems: "center" }}>
-                        <View style={{ height: 270, width: "100%", backgroundColor: "#FFB869", borderRadius: 23, marginBottom:15, alignItems: "center" }}>
+                        <View style={{ height: 270, width: "100%", backgroundColor: "#FFB869", borderRadius: 23, marginBottom: 15, alignItems: "center" }}>
+                            <TouchableOpacity style={{ position: "absolute", top: 97, }} onPress={() => route.push('/standalone/ResturantView')}>
 
+                                <Image source={{ uri: detail.image }} style={{ height: 150, width: 170, borderRadius: 16 }} />
 
-                            <Image source={{ uri: "https://clipartspub.com/images/pizza-clipart-clip-art-7.jpg" }} style={{ height: 150, width: 170, position: "absolute", top: 97 }} />
+                                {/* import { BlurView } from 'expo-blur'; */}
 
-                            {/* import { BlurView } from 'expo-blur'; */}
-
-
+                            </TouchableOpacity>
                             <View
                                 style={{
                                     height: 30,
@@ -40,13 +91,13 @@ const Details = () => {
                                     borderRadius: "50%",
                                     backgroundColor: "white",
                                     // flexDirection:"row"
-                                    position:"absolute",
-                                    top:38,left:17
+                                    position: "absolute",
+                                    top: 38, left: 17
                                 }}
                             >
 
 
-                                <AntDesign name="left" size={17}  onPress={()=>route.back()} />
+                                <AntDesign name="left" size={17} onPress={() => route.back()} />
 
                             </View>
 
@@ -69,21 +120,12 @@ const Details = () => {
                                         right: 10
                                     }}
                                 >
-                                    {wish ? (
-                                        <AntDesign
-                                            name="heart"
-                                            size={20}
-                                            color="red"
-                                            onPress={() => setWish(!wish)}
-                                        />
-                                    ) : (
-                                        <AntDesign
-                                            name="hearto"
-                                            size={20}
-                                            color="white"
-                                            onPress={() => setWish(!wish)}
-                                        />
-                                    )}
+                                    {wish?.some((ele) => ele?.id === detail.id) ?
+                                        <AntDesign name="heart" size={20} color="red" style={{ position: "absolute", right: 3, top: 4 }} onPress={() => deleteFromWish(detail?.id)} />
+                                        :
+                                        <AntDesign name="hearto" size={20} color="#CFCFCF" style={{ position: "absolute", right: 3, top: 4 }} onPress={() => addToWish(detail)} />
+
+                                    }
                                 </BlurView>
                             </View>
 
@@ -94,7 +136,7 @@ const Details = () => {
                     <View style={{ marginVertical: 12 }}>
 
                         <Text style={{ fontSize: 20, fontWeight: "600" }}>
-                            Pizza Calzone European
+                            {detail.name}
                         </Text>
                     </View>
 
@@ -105,7 +147,7 @@ const Details = () => {
                             {/* <FontAwesome name="star" size={24} color="gold" /> */}
                             <FontAwesome name="star-o" size={24} color="#FF7622" />
                             <Text style={{ fontWeight: "800", fontSize: 15 }}>
-                                4.7
+                                {detail.rating}
                             </Text>
 
                         </View>
@@ -114,7 +156,7 @@ const Details = () => {
                             {/* <FontAwesome name="star" size={24} color="gold" /> */}
                             <MaterialCommunityIcons name="truck-fast-outline" size={24} color="#FF7622" />
                             <Text style={{ fontWeight: "800", fontSize: 15 }}>
-                                4.7
+                                {detail.reviewCount}
                             </Text>
 
                         </View>
@@ -123,7 +165,7 @@ const Details = () => {
                             {/* <FontAwesome name="star" size={24} color="gold" /> */}
                             <AntDesign name="clockcircleo" size={22} color="#FF7622" />
                             <Text style={{ fontWeight: "800", fontSize: 15 }}>
-                                4.7
+                                {detail.servings}
                             </Text>
 
                         </View>
@@ -133,8 +175,8 @@ const Details = () => {
 
                     <View style={{ marginVertical: 12 }}>
 
-                        <Text style={{ fontSize: 12, fontWeight: "200" }}>
-                            Pizza Calzone European  Pizza Calzone European  Pizza Calzone European  Pizza Calzone European Pizza Calzone Europeanp
+                        <Text style={{ fontSize: 12, fontWeight: "200" }}>{
+                            detail.ingredients?.join(" ")}
                         </Text>
                     </View>
 
@@ -149,7 +191,7 @@ const Details = () => {
                     <View style={{ flexDirection: "row", alignItems: "center", gap: 14, marginVertical: 12 }}>
                         <Text>SIZE :</Text>
 
-                        {sizes.map((size, index:any) => (
+                        {sizes.map((size, index: any) => (
                             <TouchableOpacity key={index} onPress={() => setSelectedSize(index)}
 
                             >
@@ -308,29 +350,33 @@ const Details = () => {
                     {/* 3rd Section  */}
                     <View style={{ marginVertical: 18, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                         <View>
-                            <Text style={{ fontSize: 20, fontWeight: "500" }}> $ 32</Text>
+                            <Text style={{ fontSize: 20, fontWeight: "500" }}> $ {detail.cookTimeMinutes === 0 ? 10 * qty : detail.cookTimeMinutes * qty}</Text>
                         </View>
                         <View>
                             {/* 2nd item button  */}
                             <View style={{ gap: 15, flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "rgb(0,0,0)", height: 43, marginRight: 15, paddingHorizontal: 10, borderBottomEndRadius: 20, borderBottomStartRadius: 20, borderTopEndRadius: 20, borderTopStartRadius: 20, width: 130 }}>
-                                <View style={{ height: 30, width: 30, borderRadius: 50, backgroundColor: "#BFBFBF", justifyContent: "center", alignItems: "center" }}>
+                                <TouchableOpacity onPress={() => setQty(qty === 1 ? 1 : qty - 1)}>
+                                    <View style={{ height: 30, width: 30, borderRadius: 50, backgroundColor: "#BFBFBF", justifyContent: "center", alignItems: "center" }}>
 
-                                    <Entypo name="minus" size={22} color="white" />
-                                </View>
+                                        <Entypo name="minus" size={22} color="white" />
+                                    </View>
+                                </TouchableOpacity>
                                 <Text style={{ fontWeight: "700", color: "white" }}>
-                                    2
+                                    {qty ?? 1}
                                 </Text>
-                                <View style={{ height: 30, width: 30, borderRadius: 50, backgroundColor: "#BFBFBF", justifyContent: "center", alignItems: "center" }}>
+                                <TouchableOpacity onPress={() => setQty(qty + 1)}>
+                                    <View style={{ height: 30, width: 30, borderRadius: 50, backgroundColor: "#BFBFBF", justifyContent: "center", alignItems: "center" }}>
 
-                                    <Entypo name="plus" size={22} color="white" style={{ fontWeight: "600" }} />
-                                </View>
+                                        <Entypo name="plus" size={22} color="white" style={{ fontWeight: "600" }} />
+                                    </View>
+                                </TouchableOpacity>
                             </View>
 
 
                         </View>
                     </View>
 
-                    <TouchableOpacity style={{ height: 50, width: "100%", marginTop: 12, backgroundColor: "#FF7622", justifyContent: "center", alignItems: "center", borderRadius: 10 }} onPress={() => route.push("/standalone/Map")}>
+                    <TouchableOpacity style={{ height: 50, width: "100%", marginTop: 12, backgroundColor: "#FF7622", justifyContent: "center", alignItems: "center", borderRadius: 10 }} onPress={() => { addToCart({ ...detail, qty: qty }), route.push('/standalone/CartBlack') }}>
                         <Text style={{ color: "white" }}>
                             ADD TO CART
                         </Text>

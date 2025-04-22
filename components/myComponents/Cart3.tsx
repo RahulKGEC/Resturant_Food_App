@@ -5,30 +5,34 @@ import { AntDesign, FontAwesome } from '@expo/vector-icons'
 const Cart3 = () => {
     return (
         <>
-
             <View
                 style={{
                     // height: 220,
+
                     width: 150,
                     borderRadius: 18,
-                    // marginLeft: 15,
-                    backgroundColor: "#fff", // card background
+                    backgroundColor: "#fff",
                     padding: 8,
-                    shadowColor: "#000", // iOS shadow
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.1,
-                    shadowRadius: 4,
-                    elevation: 4, // Android shadow
-                    gap: 8,
+                    marginTop: 60,
+
+                    // iOS shadow
+                    shadowColor: "#000",
+                    shadowOffset: { width: 3, height: 5 }, // right and bottom
+                    shadowOpacity: 0.2,
+                    shadowRadius: 5,
+
+                    // Android shadow
+                    elevation: 6,
+
                 }}
             >
                 <View style={{ alignItems: "center" }}>
                     <Image
-                        source={require("../../assets/images/detail2.png")}
-                        style={{ width: 130, height: 100, borderRadius: 15 }}
+                        source={{ uri: "http://www.pngmart.com/files/16/Classic-Cheese-Burger-PNG-Transparent-Image.png" }}
+                        style={{ width: 110, height: 99, borderRadius: 15, position: "absolute", top: -65 }}
                     />
                 </View>
-                <View style={{ marginHorizontal: 5, gap: 3 }}>
+                <View style={{ marginHorizontal: 5, gap: 3, marginTop: 34 }}>
                     <Text style={{ fontSize: 14, fontWeight: "700" }}>European Pizza</Text>
                     <Text style={{ fontSize: 13, fontWeight: "400", color: "gray" }}>
                         Uttora Coffee
@@ -36,10 +40,10 @@ const Cart3 = () => {
                 </View>
 
 
-                <View style={{flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingHorizontal:4,marginTop:-10}}>
+                <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 4, marginTop: 5 }}>
 
                     <View >
-                        <Text style={{fontWeight:"700",fontSize:17}}>
+                        <Text style={{ fontWeight: "700", fontSize: 17 }}>
                             $ 40
                         </Text>
                     </View>
@@ -57,7 +61,7 @@ const Cart3 = () => {
                         >
 
 
-                            <AntDesign name="plus" size={20}  color="white" />
+                            <AntDesign name="plus" size={20} color="white" />
 
                         </View>
                     </View>
